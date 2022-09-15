@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import FullCalendar, { CalendarApi } from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import SendIcon from '@mui/icons-material/Send';
-import data from '../../json/data.json';
+import data from '../../data/data.json';
 import '../../css/calendar.css';
 
 
