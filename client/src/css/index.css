@@ -34,6 +34,177 @@ h3 {
   padding: 0 10px;
 }
 
+.category1_menu {
+  text-align: center;
+  height: 550px;
+}
+
+.category1_menu .window {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 500px;
+  background-color: white;
+  border-radius: 0pt;
+}
+
+.category1_menu .container {
+  position: absolute;
+  text-align: left;
+  width: 100%;
+  height: 500px;
+  margin: 0;
+  padding: 0;
+}
+
+.category1_menu .container li {
+  cursor: default;
+  margin: 0;
+  padding: 0;
+}
+
+.category1_menu .cimg {
+  width: 100%;
+}
+
+.category1_menu .buttons {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.category1_menu .buttons .button {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #DDDDDD;
+  border-radius: 100%;
+  padding: 0 2px;
+  margin: 0 2px;
+}
+
+.category1_menu .buttons .selected {
+  background-color: #98B5DA;
+}
+
+.category1_menu .buttons .button:hover {
+  cursor: pointer;
+  background-color: #4C7DBD;
+}
+
+/* 
+.category1_menu {
+  height: 130px;
+  line-height: 130px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.category1_menu ul {
+  text-align: center;
+}
+
+.category1_menu li {
+  width: 247px;
+  height: 88px;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 84px;
+  text-align: center;
+  background-color: #F9F9F9;
+  border: 2px solid #F5F5F5;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.category1_menu li b {
+  font-size: 30px;
+}
+
+.category1_menu li:hover a {
+  color: white;
+}
+
+.category1_menu li:hover {
+  background-color: #98B5DA;
+  border: 2px solid #4C7DBD;
+}
+
+.category1_menu .selected {
+  background-color: #FFFFFF;
+  border: 2px solid #4C7DBD;
+} */
+
+.category2 {
+  margin-top: 30px;
+}
+
+.category2_title {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  margin: 20px 0;
+  border-bottom: 1px solid black;
+}
+
+.category2_title h3 {
+  font-size: 25px;
+  text-align: left;
+}
+
+.category2_item {
+  width: 100%;
+  height: 200px;
+}
+
+.category2_item .items {
+  width: 25%;
+  height: 90px;
+  display: inline-block;
+  text-align: center;
+  padding: 7px;
+}
+
+.category2_item .items:hover {
+  padding: 5px;
+  border: 2px solid #98B5DA;
+}
+
+.category2_item .item {
+  height: 80px;
+  padding: 7px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.category2_item .items:hover .item {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.category2_item .item p {
+  display: block;
+  font-weight: bold;
+  text-align: left;
+  color: white;
+}
+
+.category2_item .items:hover .item p {
+  color: black;
+}
+
+.category2_item .item .title {
+  font-size: 18px;
+  color: white;
+}
+
+.category2_item .item .comment {
+  font-size: 14px;
+  font-weight: normal;
+  color: white;
+}
+
 .board_wrap {
   width: 1000px;
   margin: 100px auto;
@@ -151,6 +322,7 @@ h3 {
   padding: 15px;
   background-color: #EFF0F2;
   border-radius: 12px 0px 0px 12px;
+  margin-bottom: 80px;
 }
 
 .feedback_list li,
@@ -486,4 +658,86 @@ h3 {
   .board_write .info .cont {
     width: 100%;
   }
+}
+
+.footer {
+  width: 100%;
+  height: 360px;
+  margin-top: 80px;
+}
+
+.footer_menu_box {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  display: inline-block;
+  padding: 50px;
+  background-color: #EFF0F2;
+}
+
+.left_menu_box {
+  width: 30%;
+  float: left;
+}
+
+.left_menu_box_button_wrap {
+  margin-top: 30px;
+}
+
+.left_menu_box_button_wrap button {
+  width: 172px;
+  height: 52px;
+  background: #E0E2E6;
+  border: 1px solid #E0E2E6;
+  border-radius: 6px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  color: #484848;
+  margin-right: 13px;
+}
+
+.footer_menu {
+  width: 70%;
+  float: left;
+}
+
+.footer_menu ul {
+  float: left;
+  padding-right: 70px;
+}
+
+.footer_menu li {
+  display: block;
+  font-family: 'Montserrat';
+  font-style: normal;
+  color: #484848;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.footer_menu li a {
+  text-decoration: none;
+  color: #5d5d5d;
+}
+
+.footer_menu .footer_title {
+  margin-bottom: 7px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.menu_box {
+  height: 60px;
+  padding: 20px 0;
+  border-top: 1px solid #ddd;
+  background-color: #EFF0F2;
+}
+
+.menu_box p {
+  text-align: center;
+  font-size: 14px;
 }

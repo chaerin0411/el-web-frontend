@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Container } from "react-bootstrap";
 import Layout from './components/layouts/Layout';
+import Main from './pages/Main'
 import MemberList from './pages/member/MemberList';
 import MemberWrite from './pages/member/MemberWrite';
 import MemberView from './pages/member/MemberView';
@@ -31,7 +32,7 @@ function App() {
     <Layout>
       <Container style={{ minHeight: "80vh", marginTop: "50px" }}>
         <Routes>
-          <Route exact path='/' element={<MemberList />}></Route>
+          <Route exact path='/' element={<Main />}></Route>
           <Route exact path='/memberList' element={<MemberList />}></Route>
           <Route exact path='/memberView/:id' element={<MemberView />}></Route>
           <Route exact path='/memberEdit/:id' element={<MemberEdit />}></Route>
