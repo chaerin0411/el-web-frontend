@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import MemberList from '../../components/MemberList'
 
 
@@ -114,7 +114,7 @@ const MemberEdit = () => {
                         </div>
                         <div className="bt_wrap">
                             <button className="on">수정</button>
-                            <a href="/memberList">취소</a>
+                            <Link to={"/memberList"}>취소</Link>
                         </div>
                     </div>
                 </form>
@@ -129,4 +129,4 @@ const MemberEdit = () => {
     )
 }
 
-export default MemberEdit
+export default MemberEdit;

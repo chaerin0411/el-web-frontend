@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Search from '../../components/Search';
 import { Paper, TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Button } from '@mui/material';
 import CreateIcon from '@mui/icons-material/Create';
@@ -25,7 +26,7 @@ function MemberList() {
     const list = loadMemberList.map((data, index) => (
         <TableRow key={index}>
             <TableCell align='right'>{index}</TableCell>
-            <TableCell align='right'><a href={`/memberView/${data.id}`}>{data.name}</a></TableCell>
+            <TableCell align='right'><Link to={`/memberView/${data.id}`}>{data.name}</Link></TableCell>
             <TableCell align='right'>{data.age}</TableCell>
             <TableCell align='right'>{data.sex}</TableCell>
             <TableCell align='right'>{data.phone}</TableCell>

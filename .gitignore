@@ -6,6 +6,12 @@
 # database
 /config/database.json
 
+# client_secret
+/config/client_secret_227476389921-iju0gtm402hm31o6v9s6p07eetsjipd2.apps.googleusercontent.com.json
+
+# calendar
+/config/calendar.txt
+
 # dependencies
 /node_modules
 /.pnp

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import MemberList from '../../components/MemberList'
 
 
@@ -85,7 +85,7 @@ function MemberView() {
                     <div className="bt_wrap">
                         <button className="on" onClick={() => document.location.href = `/memberEdit/${data.id}`}>수정</button>
                         <button className="on" onClick={() => resMemberDelete()}>삭제</button>
-                        <a href="/memberList">목록</a>
+                        <Link to={"/memberList"}>목록</Link>
                     </div>
                 </div>
             </div >

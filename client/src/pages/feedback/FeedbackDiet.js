@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import FullCalendar, { CalendarApi } from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useParams, Link } from 'react-router-dom';
+import Calendar from '../../components/Calendar';
 import SendIcon from '@mui/icons-material/Send';
-import data from '../../data/data.json';
-import '../../css/calendar.css';
 
 
-const QnADiet = () => {
+const FeedbackDiet = () => {
+    const { id } = useParams();
+
     const [feedbackDiet, setFeedbackDiet] = useState({
         date: '',
         feedback: '',
@@ -21,21 +22,48 @@ const QnADiet = () => {
         })
     }
 
-    const cellList = ["아침", "점심", "저녁"]
+    const [loadDietList, setLoadDietList] = useState([]);
 
-    const list = data.dietInfo.map((data, index) => (
-        <div key={index} className="card">
-            <img className="card_img" src={data.image.src} alt={data.image.alt} />
+    const date = '2022-10-12';
+    const resDietList = async () => {
+        const loadDietList = await axios.get(`/api/feedback/dietList/${id}&/${date}`);
+        console.log(loadDietList.data);
+        setLoadDietList(loadDietList.data);
+    }
+
+    useEffect(() => {
+        resDietList()
+    }, [])
+
+    const cellList = loadDietList.map(data => (
+        <li li key={data.seq} align='right'><Link to={`/feedbackDiet/${id}&/${data.seq}`}>{data.time}</Link></li>
+    ))
+
+    const params = window.location.pathname.split('/');
+    const viewPost = []
+    const title = []
+    for (let i = 0; i < loadDietList.length; i++) {
+        title.push(loadDietList[i].time)
+        if (loadDietList[i].seq === Number(params[3])) {
+            console.log(loadDietList[i]);
+            viewPost.push(loadDietList[i])
+        }
+    }
+
+    const list = viewPost.map(data => (
+        <div key={data.seq} className="card">
+            <input type="hidden" name="seq" value={data.seq} />
+            <img className="card_img" src={data.url} />
             <div className="card_body">
-                <p className="card_text"> {data.desc}</p>
-                <textarea name="feedback" placeholder="피드백 입력" className="cont" onChange={inputChange} />
-                <button className="bt_send" onClick={() => document.location.href = '/memberList'}><SendIcon fontSize="large" /></button>
+                <p className="card_text"> {data.feedback}</p>
+                <textarea name="feedback" placeholder="피드백 입력" className="cont" onChange={inputChange} ></textarea>
+                <button className="bt_send" onClick={() => document.location.href = `/feedbackDiet/${id}&/${data.seq}`}><SendIcon fontSize="large" /></button>
             </div>
         </div>
     )
     )
 
-    const events = [{ title: cellList, date: new Date() }];
+    const events = [{ title: title, date: new Date() }];
 
     return (
         <div className="board_wrap">
@@ -44,37 +72,24 @@ const QnADiet = () => {
                 <p>식단 피드백을 입력해주세요.</p>
             </div>
 
-            <FullCalendar
-                plugins={[dayGridPlugin]}
-                initialView='dayGridMonth'
-                events={events}
-                dayMaxEvents={true}
-                moreLinkClick="popover"
-                contentHeight="500px"
-                eventDisplay='block'
-                eventColor='#4F4F4F'
-            />
+            <Calendar events={events} />
 
-            <form method="post" action="/api/feedback">
+            <form method="post" action="/api/feedback/dietUpdate">
                 <div className="board_list_wrap">
                     <div className="bt_wrap_feedback">
-                        <a href="/feedbackWorkout" className="bt_workout">운동</a>
-                        <a href="/feedbackDiet" className="bt_diet">식단</a>
+                        <Link to={`/feedbackWorkout/${id}`} className="bt_diet">운동</Link>
+                        <Link to={`/feedbackDiet/${id}`} className="bt_workout">식단</Link>
                     </div>
                     <nav className="feedback_list">
                         <ul>
-                            {cellList.map(cell => {
-                                return <li align='right'>{cell}</li>
-                            })}
+                            {cellList}
                         </ul>
                     </nav>
-
                     {list}
-
                 </div>
             </form>
         </div >
     )
 }
 
-export default QnADiet;
+export default FeedbackDiet;

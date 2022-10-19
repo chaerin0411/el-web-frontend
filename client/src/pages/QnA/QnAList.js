@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { Paper, TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 
 
@@ -21,7 +22,7 @@ const QnAList = () => {
     const list = loadQnAList.map((data, index) => (
         <TableRow key={index}>
             <TableCell align='right'>{index}</TableCell>
-            <TableCell align='right'><a href={`/QnAView/${data.seq}`}>{data.title}</a></TableCell>
+            <TableCell align='right'><Link to={`/QnAView/${data.seq}`}>{data.title}</Link></TableCell>
             <TableCell align='right'>{data.writer}</TableCell>
             <TableCell align='right'>{data.regDate}</TableCell>
             <TableCell align='right'>{data.answerCheck}</TableCell>

@@ -53,7 +53,7 @@ const Header = () => {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link href="/memberList">회원목록</Nav.Link>
-                                <Nav.Link href="/feedbackWorkout">피드백</Nav.Link>
+                                <Nav.Link href="/feedbackWorkout/1">피드백</Nav.Link>
                                 <Nav.Link href="/QnAList">QnA</Nav.Link>
                                 <Nav.Link href="/trainerWrite">내정보</Nav.Link>
                             </Nav>

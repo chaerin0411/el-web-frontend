@@ -7,8 +7,9 @@
 
 .fc .fc-button {
     font-size: 0.7em;
-    background-color: #4F4F4F;
-    border-radius: 50%;
+    background-color: #a0b2d5;
+    border: 1px solid #a0b2d5;
+    border-radius: 10%;
 }
 
 .fc-today-button {
@@ -56,7 +57,7 @@
 }
 
 .fc-daygrid-day-events {
-    color: #3e4970;
+    color: #a0b2d5;
 }
 
 .fc-event-title-container {

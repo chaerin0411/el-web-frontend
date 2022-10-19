@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import TrainerList from '../../components/TrainerList'
 
 
@@ -82,7 +83,7 @@ const TrainerWrite = () => {
                     </div>
                     <div className="bt_wrap">
                         <button className="on" onClick={() => document.location.href = `/api/trainerUpdate/${sessionStorage.getItem('id')}`}>등록</button>
-                        <a href="/">취소</a>
+                        <Link to={"/"}>취소</Link>
                     </div>
                 </div>
             </form>

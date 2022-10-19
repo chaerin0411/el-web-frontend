@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import TrainerList from '../../components/TrainerList'
 
 
@@ -110,7 +110,7 @@ const MemberEdit = () => {
                         </div>
                         <div className="bt_wrap">
                             <button className="on">수정</button>
-                            <a href="/trainerView">취소</a>
+                            <Link to={"/trainerView"}>취소</Link>
                         </div>
                     </div>
                 </form>

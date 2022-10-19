@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import MemberList from '../../components/MemberList'
 
 
@@ -96,7 +97,7 @@ function MemberWrite() {
                     </div>
                     <div className="bt_wrap">
                         <button className="on" onClick={() => document.location.href = '/memberList'}>등록</button>
-                        <a href="/memberList">취소</a>
+                        <Link to={"/memberList"}>취소</Link>
                     </div>
                 </div>
             </form>

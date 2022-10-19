@@ -41,6 +41,36 @@ app.get('/api/QnAList', (req, res) => {
     })
 })
 
+app.get('/api/feedback/workoutList/:id&/:date', (req, res) => {
+    console.log(req.params)
+    const id = req.params.id;
+    const date = req.params.date;
+    const sql = `select * from workout where id='${id}' and date='${date}';`
+    connection.query(sql, (err, data) => {
+        if (!err) {
+            res.send(data);
+            console.log(data);
+        } else {
+            console.log(err);
+        }
+    })
+})
+
+app.get('/api/feedback/dietList/:id&/:date', (req, res) => {
+    console.log(req.params)
+    const id = req.params.id;
+    const date = req.params.date;
+    const sql = `select * from diet where id='${id}' and date='${date}';`
+    connection.query(sql, (err, data) => {
+        if (!err) {
+            res.send(data);
+            console.log(data);
+        } else {
+            console.log(err);
+        }
+    })
+})
+
 var requestData = function (req, res, next) {
     req.requestData = req.body;
     next();
@@ -51,7 +81,7 @@ app.use(requestData)
 app.post('/api/memberView/:id', (req, res) => {
     console.log(req.params)
     const id = req.params.id;
-    const sql = `select * from member where id=${id};`
+    const sql = `select * from member where id='${id}';`
     connection.query(sql, (err, data) => {
         if (!err) {
             res.send(data);
@@ -111,6 +141,22 @@ app.post('/api/memberWrite', (req, res, next) => {
     })
 })
 
+// app.post('/api/scheduleWrite/:schedule', (req, res, next) => {
+//     console.log(req.params.schedule);
+//     const id = req.params.schedule.id;
+//     const date = req.params.schedule.date;
+//     const title = req.params.schedule.title;
+//     const start = req.params.schedule.start;
+//     const end = req.params.schedule.end;
+//     const color = req.params.schedule.backgroundColor;
+//     const sql = `insert into schedule (id,date,title,start,end,color) values ('${id}','${date}','${title}','${start}','${end}',${color});`;
+//     connection.query(sql, async (err, result) => {
+//         if (err) throw err;
+//         console.log("1 record inserted");
+//         res.send(result);
+//     })
+// })
+
 // app.post('/api/trainerWrite', upload.single('image'), (req, res, next) => {
 //     console.log(req.requestData);
 //     const age = req.requestData.age;
@@ -130,11 +176,21 @@ app.post('/api/memberWrite', (req, res, next) => {
 //     })
 // })
 
-app.post('/api/feedback', (req, res, next) => {
-    console.log(req.requestData);
-    const date = req.requestData.date;
+app.post('/api/feedback/workoutUpdate', (req, res, next) => {
+    const seq = req.requestData.seq;
     const feedback = req.requestData.feedback;
-    const sql = `insert into feedback (date,feedback) values ('${date}','${feedback}');`;
+    const sql = `update workout set feedback='${feedback}' where seq=${seq}`;
+    connection.query(sql, async (err, result) => {
+        if (err) throw err;
+        console.log("1 record inserted");
+        res.send(result);
+    })
+})
+
+app.post('/api/feedback/dietUpdate', (req, res, next) => {
+    const seq = req.requestData.seq;
+    const feedback = req.requestData.feedback;
+    const sql = `update diet set feedback='${feedback}' where seq=${seq}`;
     connection.query(sql, async (err, result) => {
         if (err) throw err;
         console.log("1 record inserted");

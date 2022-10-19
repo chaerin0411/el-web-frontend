@@ -17,14 +17,6 @@ import Notification from './pages/notification/Notification';
 import QnAList from './pages/QnA/QnAList';
 import QnAView from './pages/QnA/QnAView';
 
-// import Counter from './redux/features/counter/Counter';
-// import PostsList from './redux/features/posts/PostsList';
-// import AddPostForm from './redux/features/posts/AddPostForm';
-// import EditPostForm from './redux/features/posts/EditPostForm';
-// import SinglePostPage from './redux/features/posts/SinglePostPage';
-// import UsersList from './redux/features/users/UsersList';
-// import UserPage from './redux/features/users/UserPage';
-
 
 function App() {
 
@@ -33,20 +25,22 @@ function App() {
       <Container style={{ minHeight: "80vh", marginTop: "50px" }}>
         <Routes>
           <Route exact path='/' element={<Main />}></Route>
-          <Route exact path='/memberList' element={<MemberList />}></Route>
-          <Route exact path='/memberView/:id' element={<MemberView />}></Route>
-          <Route exact path='/memberEdit/:id' element={<MemberEdit />}></Route>
-          <Route exact path='/memberDelete/:id' element={<MemberList />}></Route>
-          <Route exact path='/memberWrite' element={<MemberWrite />}></Route>
-          <Route exact path='/memberInbody' element={<MemberInbody />}></Route>
-          <Route exact path='/trainerWrite' element={<TrainerWrite />}></Route>
-          <Route exact path='/trainerView/:id' element={<TrainerView />}></Route>
-          <Route exact path='/trainerEdit/:id' element={<TrainerEdit />}></Route>
-          <Route exact path='/feedbackWorkout' element={<FeedbackWorkout />}></Route>
-          <Route exact path='/feedbackDiet' element={<FeedbackDiet />}></Route>
-          <Route exact path='/QnAList' element={<QnAList />}></Route>
-          <Route exact path='/QnAView/:seq' element={<QnAView />}></Route>
-          <Route exact path='/notification' element={<Notification />}></Route>
+          <Route exact path='/memberList' element={<MemberList />} />
+          <Route exact path='/memberView/:id' element={<MemberView />} />
+          <Route exact path='/memberEdit/:id' element={<MemberEdit />} />
+          <Route exact path='/memberDelete/:id' element={<MemberList />} />
+          <Route exact path='/memberWrite' element={<MemberWrite />} />
+          <Route exact path='/memberInbody' element={<MemberInbody />} />
+          <Route exact path='/trainerWrite' element={<TrainerWrite />} />
+          <Route exact path='/trainerView/:id' element={<TrainerView />} />
+          <Route exact path='/trainerEdit/:id' element={<TrainerEdit />} />
+          <Route exact path='/feedbackWorkout/:id' element={<FeedbackWorkout />} />
+          <Route exact path='/feedbackWorkout/:id&/:seq' element={<FeedbackWorkout />} />
+          <Route exact path='/feedbackDiet/:id' element={<FeedbackDiet />} />
+          <Route exact path='/feedbackDiet/:id&/:seq' element={<FeedbackDiet />} />
+          <Route exact path='/QnAList' element={<QnAList />} />
+          <Route exact path='/QnAView/:seq' element={<QnAView />} />
+          <Route exact path='/notification' element={<Notification />} />
 
           {/* <Route exact path='/counter' element={<Counter />}></Route>
           <Route exact path='/post/postsList' element={<PostsList />}></Route>
