@@ -17,6 +17,11 @@ function MemberList() {
         setLoadMemberList(loadMemberList.data);
     }
 
+    const resMemberDelete = async (id) => {
+        await axios.delete(`/api/memberDelete/${id}`);
+        document.location.href = '/memberList';
+    }
+
     useEffect(() => {
         resMemberList()
     }, [])
@@ -39,7 +44,7 @@ function MemberList() {
                 </Button>
             </TableCell>
             <TableCell align='right'>
-                <Button variant="dark" type="button" className="rounded-pill" onClick={() => document.location.href = `/api/memberDelete/${data.id}`}>
+                <Button variant="dark" type="button" className="rounded-pill" onClick={() => resMemberDelete(data.id)}>
                     <DeleteIcon />
                 </Button>
             </TableCell>

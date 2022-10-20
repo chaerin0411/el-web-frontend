@@ -9,7 +9,7 @@ const QnAView = () => {
     const [loadQnAView, setLoadQnAView] = useState([]);
 
     const resQnAView = async () => {
-        const loadQnAView = await axios.post(`/api/QnAView/${seq}`);
+        const loadQnAView = await axios.get(`/api/QnAView/${seq}`);
         console.log(loadQnAView.data);
         setLoadQnAView(loadQnAView.data);
     }

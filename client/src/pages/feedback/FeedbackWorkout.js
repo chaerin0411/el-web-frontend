@@ -6,8 +6,6 @@ import SendIcon from '@mui/icons-material/Send';
 
 
 const FeedbackWorkout = () => {
-    const { id } = useParams();
-
     const [feedbackWorkout, setFeedbackWorkout] = useState({
         date: '',
         feedback: '',
@@ -22,6 +20,16 @@ const FeedbackWorkout = () => {
         })
     }
 
+    const { id } = useParams();
+
+    const [loadMemberView, setLoadMemberView] = useState([]);
+
+    const resMemberView = async () => {
+        const loadMemberView = await axios.get(`/api/memberView/${id}`);
+        console.log(loadMemberView.data);
+        setLoadMemberView(loadMemberView.data);
+    }
+
     const [loadWorkoutList, setLoadWorkoutList] = useState([]);
 
     const date = '2022-10-17';
@@ -31,7 +39,15 @@ const FeedbackWorkout = () => {
         setLoadWorkoutList(loadWorkoutList.data);
     }
 
+    const resWorkoutView = async (seq) => {
+        const loadWorkoutView = await axios.put('/api/feedback/workoutUpdate', { seq: seq, feedback: feedbackWorkout.feedback, });
+        console.log(loadWorkoutView.data);
+        setFeedbackWorkout(loadWorkoutView.data);
+        document.location.href = `/feedbackWorkout/${id}&/${seq}`
+    }
+
     useEffect(() => {
+        resMemberView()
         resWorkoutList()
     }, [])
 
@@ -57,7 +73,7 @@ const FeedbackWorkout = () => {
             <div className="card_body">
                 <p className="card_text"> {data.feedback}</p>
                 <textarea name="feedback" placeholder="피드백 입력" className="cont" onChange={inputChange} ></textarea>
-                <button className="bt_send" onClick={() => document.location.href = `/feedbackWorkout/${id}/${data.seq}`}><SendIcon fontSize="large" /></button>
+                <button className="bt_send" onClick={() => resWorkoutView(data.seq)}><SendIcon fontSize="large" /></button>
             </div>
         </div>
     )
@@ -68,26 +84,24 @@ const FeedbackWorkout = () => {
     return (
         <div className="board_wrap">
             <div className="board_title">
-                <strong>김동양님</strong>
+                <strong>{loadMemberView.name}</strong>
                 <p>운동 피드백을 입력해주세요.</p>
             </div>
 
             <Calendar events={events} />
 
-            <form method="post" action="/api/feedback/workoutUpdate">
-                <div className="board_list_wrap">
-                    <div className="bt_wrap_feedback">
-                        <Link to={`/feedbackWorkout/${id}`} className="bt_workout">운동</Link>
-                        <Link to={`/feedbackDiet/${id}`} className="bt_diet">식단</Link>
-                    </div>
-                    <nav className="feedback_list">
-                        <ul>
-                            {cellList}
-                        </ul>
-                    </nav>
-                    {list}
-                </div >
-            </form >
+            <div className="board_list_wrap">
+                <div className="bt_wrap_feedback">
+                    <Link to={`/feedbackWorkout/${id}`} className="bt_workout">운동</Link>
+                    <Link to={`/feedbackDiet/${id}`} className="bt_diet">식단</Link>
+                </div>
+                <nav className="feedback_list">
+                    <ul>
+                        {cellList}
+                    </ul>
+                </nav>
+                {list}
+            </div >
         </div >
     )
 }

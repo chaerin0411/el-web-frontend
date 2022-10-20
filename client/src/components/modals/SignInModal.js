@@ -11,7 +11,7 @@ const SignInModal = ({ show, onHide }) => {
 
     const onSubmit = (data) => {
         console.log(data)
-        const req = axios.post(`/api/login/${data.id}&/${data.password}`)
+        const req = axios.get(`/api/login/${data.id}&/${data.password}`)
             .then(
                 res => {
                     console.log(res);

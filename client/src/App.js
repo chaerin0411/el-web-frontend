@@ -30,7 +30,7 @@ function App() {
           <Route exact path='/memberEdit/:id' element={<MemberEdit />} />
           <Route exact path='/memberDelete/:id' element={<MemberList />} />
           <Route exact path='/memberWrite' element={<MemberWrite />} />
-          <Route exact path='/memberInbody' element={<MemberInbody />} />
+          <Route exact path='/memberInbody/:id' element={<MemberInbody />} />
           <Route exact path='/trainerWrite' element={<TrainerWrite />} />
           <Route exact path='/trainerView/:id' element={<TrainerView />} />
           <Route exact path='/trainerEdit/:id' element={<TrainerEdit />} />

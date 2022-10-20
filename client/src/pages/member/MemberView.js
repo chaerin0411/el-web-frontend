@@ -10,13 +10,14 @@ function MemberView() {
     const [loadMemberView, setLoadMemberView] = useState([]);
 
     const resMemberView = async () => {
-        const loadMemberView = await axios.post(`/api/memberView/${id}`);
+        const loadMemberView = await axios.get(`/api/memberView/${id}`);
         console.log(loadMemberView.data);
         setLoadMemberView(loadMemberView.data);
     }
 
     const resMemberDelete = async () => {
-        await axios.post(`/api/memberDelete/${id}`);
+        await axios.delete(`/api/memberDelete/${id}`);
+        document.location.href = '/memberList';
     }
 
     useEffect(() => {

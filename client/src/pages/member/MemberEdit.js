@@ -33,7 +33,7 @@ const MemberEdit = () => {
     const [loadMemberView, setLoadMemberView] = useState([]);
 
     const resMemberView = async () => {
-        const loadMemberView = await axios.post(`/api/memberView/${id}`);
+        const loadMemberView = await axios.get(`/api/memberView/${id}`);
         console.log(loadMemberView.data);
         setLoadMemberView(loadMemberView.data);
     }

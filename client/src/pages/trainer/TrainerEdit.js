@@ -33,7 +33,7 @@ const MemberEdit = () => {
     const { id } = useParams();
 
     const resTrainerView = async () => {
-        const loadTrainerView = await axios.post(`/api/trainerView/${id}`);
+        const loadTrainerView = await axios.get(`/api/trainerView/${id}`);
         console.log(loadTrainerView.data);
         setLoadTrainerView(loadTrainerView.data);
     }

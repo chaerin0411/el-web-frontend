@@ -71,14 +71,7 @@ app.get('/api/feedback/dietList/:id&/:date', (req, res) => {
     })
 })
 
-var requestData = function (req, res, next) {
-    req.requestData = req.body;
-    next();
-}
-
-app.use(requestData)
-
-app.post('/api/memberView/:id', (req, res) => {
+app.get('/api/memberView/:id', (req, res) => {
     console.log(req.params)
     const id = req.params.id;
     const sql = `select * from member where id='${id}';`
@@ -92,7 +85,7 @@ app.post('/api/memberView/:id', (req, res) => {
     })
 })
 
-app.post('/api/trainerView/:id', (req, res) => {
+app.get('/api/trainerView/:id', (req, res) => {
     console.log(req.params)
     const id = req.params.id;
     const sql = `select * from trainer where id='${id}';`
@@ -106,7 +99,7 @@ app.post('/api/trainerView/:id', (req, res) => {
     })
 })
 
-app.post('/api/QnAView/:seq', (req, res) => {
+app.get('/api/QnAView/:seq', (req, res) => {
     console.log(req.params)
     const seq = req.params.seq;
     const sql = `select * from board where seq=${seq};`
@@ -119,6 +112,38 @@ app.post('/api/QnAView/:seq', (req, res) => {
         }
     })
 })
+
+app.get('/api/login/:id&/:password', (req, res, next) => {
+    const id = req.params.id;
+    const password = req.params.password;
+    console.log(id, password);
+    const sql = `select id,password from trainer where id='${id}' and password='${password}'`;
+    connection.query(sql, (err, data) => {
+        console.log(sql);
+        res.send(data);
+    })
+})
+
+app.get("/api/search/:searchText", (req, res) => {
+    console.log(req.params.searchText);
+    const text = req.params.searchText;
+    const sql = `select * from member where name like '%${text}%'`
+    connection.query(sql, async (err, data) => {
+        if (!err) {
+            res.send({ searchData: data })
+            console.log(data);
+        } else {
+            console.log(err);
+        }
+    })
+})
+
+var requestData = function (req, res, next) {
+    req.requestData = req.body;
+    next();
+}
+
+app.use(requestData)
 
 app.post('/api/memberWrite', (req, res, next) => {
     console.log(req.requestData);
@@ -176,7 +201,31 @@ app.post('/api/memberWrite', (req, res, next) => {
 //     })
 // })
 
-app.post('/api/feedback/workoutUpdate', (req, res, next) => {
+app.post('/api/member/:id&/:password&/:name&/:email&/:phone&/:addr', (req, res, next) => {
+    console.log("member");
+    console.log(req.params.id);
+    console.log(req.params.password);
+    console.log(req.params.name);
+    console.log(req.params.email);
+    console.log(req.params.phone);
+    console.log(req.params.addr);
+    const id = req.params.id;
+    const password = req.params.password;
+    const name = req.params.name;
+    const email = req.params.email;
+    const phone = req.params.phone;
+    const addr = req.params.addr;
+    const sql = `insert into trainer (id,password,name,email,phone,addr) values('${id}','${password}','${name}','${email}','${phone}','${addr}');`
+    connection.query(sql, (err, data) => {
+        if (!err) {
+            res.send()
+        } else {
+            console.log(err)
+        }
+    })
+})
+
+app.put('/api/feedback/workoutUpdate', (req, res, next) => {
     const seq = req.requestData.seq;
     const feedback = req.requestData.feedback;
     const sql = `update workout set feedback='${feedback}' where seq=${seq}`;
@@ -187,7 +236,7 @@ app.post('/api/feedback/workoutUpdate', (req, res, next) => {
     })
 })
 
-app.post('/api/feedback/dietUpdate', (req, res, next) => {
+app.put('/api/feedback/dietUpdate', (req, res, next) => {
     const seq = req.requestData.seq;
     const feedback = req.requestData.feedback;
     const sql = `update diet set feedback='${feedback}' where seq=${seq}`;
@@ -198,21 +247,7 @@ app.post('/api/feedback/dietUpdate', (req, res, next) => {
     })
 })
 
-app.post("/api/search/:searchText", (req, res) => {
-    console.log(req.params.searchText);
-    const text = req.params.searchText;
-    const sql = `select * from member where name like '%${text}%'`
-    connection.query(sql, async (err, data) => {
-        if (!err) {
-            res.send({ searchData: data })
-            console.log(data);
-        } else {
-            console.log(err);
-        }
-    })
-})
-
-app.post('/api/memberUpdate', (req, res, next) => {
+app.put('/api/memberUpdate', (req, res, next) => {
     console.log(req.requestData);
     const id = req.requestData.id;
     const name = req.requestData.name;
@@ -235,7 +270,7 @@ app.post('/api/memberUpdate', (req, res, next) => {
 
 app.use('/image', express.static('./upload'));
 
-app.post('/api/trainerUpdate', upload.single('image'), (req, res, next) => {
+app.put('/api/trainerUpdate', upload.single('image'), (req, res, next) => {
     console.log(req.requestData);
     const id = req.requestData.id;
     const name = req.requestData.name;
@@ -274,7 +309,7 @@ app.post('/api/trainerUpdate', upload.single('image'), (req, res, next) => {
 //     })
 // })
 
-app.post('/api/memberDelete/:id', (req, res, next) => {
+app.delete('/api/memberDelete/:id', (req, res, next) => {
     const id = req.params.id;
     console.log(id);
     const sql = `delete from member where id=${id}`;
@@ -288,41 +323,6 @@ app.delete('/api/trainerDelete/:id', (req, res, next) => {
     const id = req.params.id;
     console.log(id);
     const sql = `delete from trainer where id='${id}'`;
-    connection.query(sql, (err, data) => {
-        console.log(sql);
-        res.send(data);
-    })
-})
-
-app.post('/api/member/:id&/:password&/:name&/:email&/:phone&/:addr', (req, res, next) => {
-    console.log("member");
-    console.log(req.params.id);
-    console.log(req.params.password);
-    console.log(req.params.name);
-    console.log(req.params.email);
-    console.log(req.params.phone);
-    console.log(req.params.addr);
-    const id = req.params.id;
-    const password = req.params.password;
-    const name = req.params.name;
-    const email = req.params.email;
-    const phone = req.params.phone;
-    const addr = req.params.addr;
-    const sql = `insert into trainer (id,password,name,email,phone,addr) values('${id}','${password}','${name}','${email}','${phone}','${addr}');`
-    connection.query(sql, (err, data) => {
-        if (!err) {
-            res.send()
-        } else {
-            console.log(err)
-        }
-    })
-})
-
-app.post('/api/login/:id&/:password', (req, res, next) => {
-    const id = req.params.id;
-    const password = req.params.password;
-    console.log(id, password);
-    const sql = `select id,password from trainer where id='${id}' and password='${password}'`;
     connection.query(sql, (err, data) => {
         console.log(sql);
         res.send(data);
