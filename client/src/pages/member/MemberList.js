@@ -30,7 +30,7 @@ function MemberList() {
 
     const list = loadMemberList.map((data, index) => (
         <TableRow key={index}>
-            <TableCell align='right'>{index}</TableCell>
+            <TableCell align='right'>{index + 1}</TableCell>
             <TableCell align='right'><Link to={`/memberView/${data.id}`}>{data.name}</Link></TableCell>
             <TableCell align='right'>{data.age}</TableCell>
             <TableCell align='right'>{data.sex}</TableCell>

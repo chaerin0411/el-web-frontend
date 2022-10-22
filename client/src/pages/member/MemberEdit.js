@@ -8,7 +8,7 @@ const MemberEdit = () => {
     const [editInfo, setEditInfo] = useState({
         name: '',
         age: '',
-        sex: '',
+        sex: '남',
         birth: '',
         height: '',
         weight: '',

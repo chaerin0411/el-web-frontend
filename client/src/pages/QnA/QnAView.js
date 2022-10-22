@@ -4,20 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 
 
 const QnAView = () => {
-    const { seq } = useParams();
-
-    const [loadQnAView, setLoadQnAView] = useState([]);
-
-    const resQnAView = async () => {
-        const loadQnAView = await axios.get(`/api/QnAView/${seq}`);
-        console.log(loadQnAView.data);
-        setLoadQnAView(loadQnAView.data);
-    }
-
-    useEffect(() => {
-        resQnAView()
-    }, [])
-
     const [feedbackQnA, setFeedbackQnA] = useState({
         answer: '',
     })
@@ -30,6 +16,27 @@ const QnAView = () => {
             [e.target.name]: e.target.value
         })
     }
+
+    const { seq } = useParams();
+
+    const [loadQnAView, setLoadQnAView] = useState([]);
+
+    const resQnAView = async () => {
+        const loadQnAView = await axios.get(`/api/QnAView/${seq}`);
+        console.log(loadQnAView.data);
+        setLoadQnAView(loadQnAView.data);
+    }
+
+    const resQnAUpdate = async (seq) => {
+        const loadQnAUpdate = await axios.put(`/api/QnAUpdate`, { seq: seq, answer: feedbackQnA.answer, });
+        console.log(loadQnAUpdate.data);
+        setFeedbackQnA(loadQnAUpdate.data);
+        document.location.href = `/QnAView/${seq}`;
+    }
+
+    useEffect(() => {
+        resQnAView()
+    }, [])
 
     const mapViewPost = loadQnAView.map(data => {
         return (
@@ -75,14 +82,10 @@ const QnAView = () => {
                             </dl>
                         </div>
                     </div>
-
-                    <form name="board" method="post" action="/feedbackQnA">
-                        <textarea name="answere" placeholder="답변 입력" className="cont" onChange={inputChange} />
-
-                    </form>
+                    <textarea name="answer" placeholder="답변 입력" className="cont" onChange={inputChange} />
                     <div className="bt_wrap">
                         <Link to={"/QnAList"}>목록</Link>
-                        <button type="submit" className="on" onClick={() => document.location.href = `/QnAList/&{data.id}`}>등록</button>
+                        <button className="on" onClick={() => resQnAUpdate(data.seq)}>등록</button>
                     </div>
                 </div>
             </div >

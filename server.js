@@ -231,7 +231,7 @@ app.put('/api/feedback/workoutUpdate', (req, res, next) => {
     const sql = `update workout set feedback='${feedback}' where seq=${seq}`;
     connection.query(sql, async (err, result) => {
         if (err) throw err;
-        console.log("1 record inserted");
+        console.log("1 record updated");
         res.send(result);
     })
 })
@@ -242,7 +242,7 @@ app.put('/api/feedback/dietUpdate', (req, res, next) => {
     const sql = `update diet set feedback='${feedback}' where seq=${seq}`;
     connection.query(sql, async (err, result) => {
         if (err) throw err;
-        console.log("1 record inserted");
+        console.log("1 record updated");
         res.send(result);
     })
 })
@@ -270,9 +270,9 @@ app.put('/api/memberUpdate', (req, res, next) => {
 
 app.use('/image', express.static('./upload'));
 
-app.put('/api/trainerUpdate', upload.single('image'), (req, res, next) => {
+app.put('/api/trainerUpdate/:id', (req, res, next) => {
     console.log(req.requestData);
-    const id = req.requestData.id;
+    const id = req.params.id;
     const name = req.requestData.name;
     const age = req.requestData.age;
     const sex = req.requestData.sex;
@@ -281,7 +281,7 @@ app.put('/api/trainerUpdate', upload.single('image'), (req, res, next) => {
     const weight = req.requestData.weight;
     const award = req.requestData.award;
     const career = req.requestData.career;
-    const image = 'http://localhost:4000/image/' + req.requestData.file;
+    const image = '';
     const sql = `update trainer set name='${name}', age='${age}', sex='${sex}', birth='${birth}', height='${height}', weight='${weight}', award='${award}', career='${career}', image='${image}' where id='${id}'`;
     connection.query(sql, async (err, result) => {
         if (err) throw err;
@@ -289,9 +289,9 @@ app.put('/api/trainerUpdate', upload.single('image'), (req, res, next) => {
     })
 })
 
-// app.post('/api/trainerUpdate', upload.single('image'), (req, res, next) => {
+// app.post('/api/trainerUpdate/:id', upload.single('image'), (req, res, next) => {
 //     console.log(req.requestData);
-//     const id = req.requestData.id;
+//     const id = req.params.id;
 //     const age = req.requestData.age;
 //     const sex = req.requestData.sex;
 //     const birth = req.requestData.birth;
@@ -308,6 +308,17 @@ app.put('/api/trainerUpdate', upload.single('image'), (req, res, next) => {
 //         console.log("1 record updated");
 //     })
 // })
+
+app.put('/api/QnAUpdate', (req, res, next) => {
+    const seq = req.requestData.seq;
+    const answer = req.requestData.answer;
+    const sql = `update board set answer='${answer}' where seq=${seq}`;
+    connection.query(sql, async (err, result) => {
+        if (err) throw err;
+        console.log("1 record updated");
+        res.send(result);
+    })
+})
 
 app.delete('/api/memberDelete/:id', (req, res, next) => {
     const id = req.params.id;

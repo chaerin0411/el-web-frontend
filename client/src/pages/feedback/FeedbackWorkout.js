@@ -32,17 +32,17 @@ const FeedbackWorkout = () => {
 
     const [loadWorkoutList, setLoadWorkoutList] = useState([]);
 
-    const date = '2022-10-17';
+    const date = '2022-10-22';
     const resWorkoutList = async () => {
         const loadWorkoutList = await axios.get(`/api/feedback/workoutList/${id}&/${date}`);
         console.log(loadWorkoutList.data);
         setLoadWorkoutList(loadWorkoutList.data);
     }
 
-    const resWorkoutView = async (seq) => {
-        const loadWorkoutView = await axios.put('/api/feedback/workoutUpdate', { seq: seq, feedback: feedbackWorkout.feedback, });
-        console.log(loadWorkoutView.data);
-        setFeedbackWorkout(loadWorkoutView.data);
+    const resWorkoutUpdate = async (seq) => {
+        const loadWorkoutUpdate = await axios.put('/api/feedback/workoutUpdate', { seq: seq, feedback: feedbackWorkout.feedback, });
+        console.log(loadWorkoutUpdate.data);
+        setFeedbackWorkout(loadWorkoutUpdate.data);
         document.location.href = `/feedbackWorkout/${id}&/${seq}`
     }
 
@@ -69,11 +69,14 @@ const FeedbackWorkout = () => {
     const list = viewPost.map(data => (
         <div key={data.seq} className="card">
             <input type="hidden" name="seq" value={data.seq} />
-            <img className="card_img" src={data.url} />
+            <video autoplay controls loop muted className="card_img">
+                <source src={data.url} type="video/mp4" />
+                피드백 운동 영상입니다.
+            </video>
             <div className="card_body">
                 <p className="card_text"> {data.feedback}</p>
                 <textarea name="feedback" placeholder="피드백 입력" className="cont" onChange={inputChange} ></textarea>
-                <button className="bt_send" onClick={() => resWorkoutView(data.seq)}><SendIcon fontSize="large" /></button>
+                <button className="bt_send" onClick={() => resWorkoutUpdate(data.seq)}><SendIcon fontSize="large" /></button>
             </div>
         </div>
     )

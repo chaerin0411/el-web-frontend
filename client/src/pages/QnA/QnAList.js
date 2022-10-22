@@ -21,11 +21,11 @@ const QnAList = () => {
 
     const list = loadQnAList.map((data, index) => (
         <TableRow key={index}>
-            <TableCell align='right'>{index}</TableCell>
-            <TableCell align='right'><Link to={`/QnAView/${data.seq}`}>{data.title}</Link></TableCell>
-            <TableCell align='right'>{data.writer}</TableCell>
-            <TableCell align='right'>{data.regDate}</TableCell>
-            <TableCell align='right'>{data.answerCheck}</TableCell>
+            <TableCell align='left'>{index + 1}</TableCell>
+            <TableCell align='left'><Link to={`/QnAView/${data.seq}`}>{data.title}</Link></TableCell>
+            <TableCell align='left'>{data.writer}</TableCell>
+            <TableCell align='left'>{data.regDate}</TableCell>
+            <TableCell align='left'>{data.answerCheck}</TableCell>
         </TableRow>
     )
     )
@@ -36,7 +36,7 @@ const QnAList = () => {
                 <TableHead>
                     <TableRow>
                         {cellList.map(cell => {
-                            return <TableCell align='right'>{cell}</TableCell>
+                            return <TableCell align='left'>{cell}</TableCell>
                         })}
                     </TableRow>
                 </TableHead>

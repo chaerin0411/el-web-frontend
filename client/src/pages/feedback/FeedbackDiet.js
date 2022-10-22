@@ -32,17 +32,17 @@ const FeedbackDiet = () => {
 
     const [loadDietList, setLoadDietList] = useState([]);
 
-    const date = '2022-10-12';
+    const date = '2022-10-22';
     const resDietList = async () => {
         const loadDietList = await axios.get(`/api/feedback/dietList/${id}&/${date}`);
         console.log(loadDietList.data);
         setLoadDietList(loadDietList.data);
     }
 
-    const resDietView = async (seq) => {
-        const loadDietView = await axios.put('/api/feedback/dietUpdate', { seq: seq, feedback: feedbackDiet.feedback, });
-        console.log(loadDietView.data);
-        setFeedbackDiet(loadDietView.data);
+    const resDietUpdate = async (seq) => {
+        const loadDietUpdate = await axios.put('/api/feedback/dietUpdate', { seq: seq, feedback: feedbackDiet.feedback, });
+        console.log(loadDietUpdate.data);
+        setFeedbackDiet(loadDietUpdate.data);
         document.location.href = `/feedbackDiet/${id}&/${seq}`
     }
 
@@ -73,7 +73,7 @@ const FeedbackDiet = () => {
             <div className="card_body">
                 <p className="card_text"> {data.feedback}</p>
                 <textarea name="feedback" placeholder="피드백 입력" className="cont" onChange={inputChange} ></textarea>
-                <button className="bt_send" onClick={() => resDietView(data.seq)}><SendIcon fontSize="large" /></button>
+                <button className="bt_send" onClick={() => resDietUpdate(data.seq)}><SendIcon fontSize="large" /></button>
             </div>
         </div>
     )
