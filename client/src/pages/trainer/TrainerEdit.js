@@ -28,10 +28,9 @@ const MemberEdit = () => {
         })
     }
 
-    const [loadTrainerView, setLoadTrainerView] = useState([]);
-
     const { id } = useParams();
 
+    const [loadTrainerView, setLoadTrainerView] = useState([]);
     const resTrainerView = async () => {
         const loadTrainerView = await axios.get(`/api/trainerView/${id}`);
         console.log(loadTrainerView.data);
@@ -46,7 +45,7 @@ const MemberEdit = () => {
         return (
             <div key={data.id} className="board_wrap">
                 <div className="board_title">
-                    <strong>내정보 수정</strong>
+                    <strong>{data.name}님</strong>
                     <p>내정보를 수정해주세요.</p>
                 </div>
 

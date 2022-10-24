@@ -27,8 +27,7 @@ const QnAList = () => {
             <TableCell align='left'>{data.regDate}</TableCell>
             <TableCell align='left'>{data.answerCheck}</TableCell>
         </TableRow>
-    )
-    )
+    ))
 
     return (
         <TableContainer component={Paper}>

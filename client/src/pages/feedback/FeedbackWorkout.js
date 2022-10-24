@@ -22,12 +22,12 @@ const FeedbackWorkout = () => {
 
     const { id } = useParams();
 
-    const [loadMemberView, setLoadMemberView] = useState([]);
+    const [loadMemberName, setLoadMemberName] = useState([]);
 
     const resMemberView = async () => {
         const loadMemberView = await axios.get(`/api/memberView/${id}`);
         console.log(loadMemberView.data);
-        setLoadMemberView(loadMemberView.data);
+        setLoadMemberName(loadMemberView.data[0].name);
     }
 
     const [loadWorkoutList, setLoadWorkoutList] = useState([]);
@@ -87,7 +87,7 @@ const FeedbackWorkout = () => {
     return (
         <div className="board_wrap">
             <div className="board_title">
-                <strong>{loadMemberView.name}</strong>
+                <strong>{loadMemberName}님</strong>
                 <p>운동 피드백을 입력해주세요.</p>
             </div>
 

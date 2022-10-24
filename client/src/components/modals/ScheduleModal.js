@@ -23,9 +23,9 @@ const ScheduleModal = (props) => {
                     <h5>{info.title}</h5><br />
                     <h4>설명</h4>
                     <h5>{info.description ? (info.description) : ("")}</h5><br />
-                    <h4>시작일</h4>
+                    <h4>시작일시</h4>
                     <h5>{info.start}</h5><br />
-                    <h4>종료일</h4>
+                    <h4>종료일시</h4>
                     <h5>{info.end}</h5>
                 </Modal.Body>
             </Container>

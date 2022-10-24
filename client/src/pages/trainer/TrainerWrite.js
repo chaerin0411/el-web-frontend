@@ -38,7 +38,7 @@ const TrainerWrite = () => {
     return (
         <div className="board_wrap">
             <div className="board_title">
-                <strong>내정보 등록</strong>
+                <strong>{id}님</strong>
                 <p>내 정보를 모두 입력해주세요.</p>
             </div>
 

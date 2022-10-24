@@ -3,44 +3,52 @@
         {
             "id": 1,
             "title": "어깨 루틴",
-            "comment": "레터럴레이즈, 숄더프레스 ..."
+            "comment": "레터럴레이즈, 숄더프레스 ...",
+            "url": "https://www.youtube.com/watch?v=cBZnbTeld2w"
         },
         {
             "id": 2,
             "title": "등 루틴",
-            "comment": "랫풀다운, 시티드로우 ..."
+            "comment": "랫풀다운, 시티드로우 ...",
+            "url": "https://www.youtube.com/watch?v=5jZ940J6w6Y"
         },
         {
             "id": 3,
             "title": "하체 루틴",
-            "comment": "레그익스텐션, 레그프레스 ..."
+            "comment": "레그익스텐션, 레그프레스 ...",
+            "url": "https://www.youtube.com/watch?v=5o3fqFunBgA"
         },
         {
             "id": 4,
             "title": "이두/삼두 루틴",
-            "comment": "덤벨컬, 케이블푸쉬다운 ..."
+            "comment": "덤벨컬, 케이블푸쉬다운 ...",
+            "url": "https://www.youtube.com/watch?v=1XlFo_Uhbsk"
         }
     ],
     "dietList": [
         {
             "id": 1,
             "title": "아침",
-            "comment": "샐러드, 삶은달걀 ..."
+            "comment": "샐러드, 삶은달걀 ...",
+            "url": "https://www.youtube.com/watch?v=qcTxaFMWzKs"
         },
         {
             "id": 2,
             "title": "점심",
-            "comment": "샐러드, 고구마 ..."
+            "comment": "샐러드, 고구마 ...",
+            "url": "https://www.youtube.com/watch?v=iFLEWn7l-BE"
         },
         {
             "id": 3,
             "title": "저녁",
-            "comment": "샐러드, 닭가슴살 ..."
+            "comment": "샐러드, 닭가슴살 ...",
+            "url": "https://www.youtube.com/watch?v=s5HVScgeoyM"
         },
         {
             "id": 4,
             "title": "간식",
-            "comment": "방울토마토, 견과류 ..."
+            "comment": "방울토마토, 견과류 ...",
+            "url": "https://www.youtube.com/watch?v=GuPC1qy17DU"
         }
     ]
 }

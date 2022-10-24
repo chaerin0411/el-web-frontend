@@ -7,12 +7,12 @@ import MemberList from '../../components/MemberList'
 function MemberInbody() {
     const { id } = useParams();
 
-    const [loadMemberView, setLoadMemberView] = useState([]);
+    const [loadMemberName, setLoadMemberName] = useState([]);
 
     const resMemberView = async () => {
         const loadMemberView = await axios.get(`/api/memberView/${id}`);
         console.log(loadMemberView.data);
-        setLoadMemberView(loadMemberView.data);
+        setLoadMemberName(loadMemberView.data[0].name);
     }
 
     useEffect(() => {
@@ -22,7 +22,7 @@ function MemberInbody() {
     return (
         <div className="board_wrap">
             <div className="board_title">
-                <strong>{loadMemberView.name}</strong>
+                <strong>{loadMemberName}님</strong>
                 <p>회원 인바디 정보를 확인하세요.</p>
             </div>
 
