@@ -16,6 +16,7 @@ const MemberEdit = () => {
         email: '',
         award: '',
         career: '',
+        addr: '',
         file: '',
     })
 
@@ -29,6 +30,12 @@ const MemberEdit = () => {
     }
 
     const { id } = useParams();
+
+    const resTrainerUpdate = async () => {
+        const loadTrainerUpdate = await axios.put(`/api/trainerUpdate/${id}`, editInfo);
+        console.log(loadTrainerUpdate.data);
+        document.location.href = `/trainerView/${id}`;
+    }
 
     const [loadTrainerView, setLoadTrainerView] = useState([]);
     const resTrainerView = async () => {
@@ -51,69 +58,67 @@ const MemberEdit = () => {
 
                 <TrainerList />
 
-                <form method="post" action="/api/trainerUpdate">
-                    <input type="hidden" name="id" value={data.id} />
-                    <div className="board_write_wrap">
-                        <div className="board_write">
-                            <div class="info">
-                                <dl>
-                                    <dt>이름</dt>
-                                    <dd><input type="text" name="name" value={data.name} autoFocus className="mb-3" onChange={inputChange} /></dd>
-                                </dl>
-                                <dl>
-                                    <dt>연령</dt>
-                                    <dd><input type="number" name="age" value={data.age} className="mb-3" onChange={inputChange} /></dd>
-                                </dl>
-                                <dl>
-                                    <dt>성별</dt>
-                                    <dd>
-                                        <input type="radio" id="man" name="sex" value="남" checked={data.sex === "남"} onChange={inputChange} />
-                                        <label for="man">남자</label>
-                                        <input type="radio" id="woman" name="sex" value="여" checked={data.sex === "여"} onChange={inputChange} />
-                                        <label for="woman">여자</label>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>생년월일</dt>
-                                    <dd><input type="date" name="birth" value={data.birth} className="mb-3" onChange={inputChange} /></dd>
-                                </dl>
-                                <dl>
-                                    <dt>키</dt>
-                                    <dd><input type="number" name="height" value={data.height} className="mb-3" onChange={inputChange} /></dd>
-                                </dl>
-                                <dl>
-                                    <dt>체중</dt>
-                                    <dd><input type="number" name="weight" value={data.weight} className="mb-3" onChange={inputChange} /></dd>
-                                </dl>
-                                <dl>
-                                    <dt>전화번호</dt>
-                                    <dd><input type="tel" name="phone" value={data.phone} className="mb-3" onChange={inputChange} /></dd>
-                                </dl>
-                                <dl>
-                                    <dt>이메일</dt>
-                                    <dd><input type="email" name="email" value={data.email} className="mb-3" onChange={inputChange} /></dd>
-                                </dl>
-                                <dl>
-                                    <dt>수상</dt>
-                                    <dd><input type="text" name="award" value={data.award} className="mb-3" onChange={inputChange} /></dd>
-                                </dl>
-                                <dl>
-                                    <dt>이력</dt>
-                                    <dd><input type="text" name="career" value={data.career} className="mb-3" onChange={inputChange} /></dd>
-                                </dl>
-                                <dl>
-                                    <dt>헬스장위치</dt>
-                                    <dd><input type="text" name="addr" value={data.addr} className="mb-3" onChange={inputChange} /></dd>
-                                </dl>
-                            </div>
-                        </div>
-                        <div className="bt_wrap">
-                            <button className="on">수정</button>
-                            <Link to={"/trainerView"}>취소</Link>
+                <input type="hidden" name="id" value={data.id} />
+                <div className="board_write_wrap">
+                    <div className="board_write">
+                        <div class="info">
+                            <dl>
+                                <dt>이름</dt>
+                                <dd><input type="text" name="name" value={data.name} autoFocus className="mb-3" onChange={inputChange} /></dd>
+                            </dl>
+                            <dl>
+                                <dt>연령</dt>
+                                <dd><input type="number" name="age" value={data.age} className="mb-3" onChange={inputChange} /></dd>
+                            </dl>
+                            <dl>
+                                <dt>성별</dt>
+                                <dd>
+                                    <input type="radio" id="man" name="sex" value="남" checked={data.sex === "남"} onChange={inputChange} />
+                                    <label for="man">남자</label>
+                                    <input type="radio" id="woman" name="sex" value="여" checked={data.sex === "여"} onChange={inputChange} />
+                                    <label for="woman">여자</label>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>생년월일</dt>
+                                <dd><input type="date" name="birth" value={data.birth} className="mb-3" onChange={inputChange} /></dd>
+                            </dl>
+                            <dl>
+                                <dt>키</dt>
+                                <dd><input type="number" name="height" value={data.height} className="mb-3" onChange={inputChange} /></dd>
+                            </dl>
+                            <dl>
+                                <dt>체중</dt>
+                                <dd><input type="number" name="weight" value={data.weight} className="mb-3" onChange={inputChange} /></dd>
+                            </dl>
+                            <dl>
+                                <dt>전화번호</dt>
+                                <dd><input type="tel" name="phone" value={data.phone} className="mb-3" onChange={inputChange} /></dd>
+                            </dl>
+                            <dl>
+                                <dt>이메일</dt>
+                                <dd><input type="email" name="email" value={data.email} className="mb-3" onChange={inputChange} /></dd>
+                            </dl>
+                            <dl>
+                                <dt>수상</dt>
+                                <dd><input type="text" name="award" value={data.award} className="mb-3" onChange={inputChange} /></dd>
+                            </dl>
+                            <dl>
+                                <dt>이력</dt>
+                                <dd><input type="text" name="career" value={data.career} className="mb-3" onChange={inputChange} /></dd>
+                            </dl>
+                            <dl>
+                                <dt>헬스장위치</dt>
+                                <dd><input type="text" name="addr" value={data.addr} className="mb-3" onChange={inputChange} /></dd>
+                            </dl>
                         </div>
                     </div>
-                </form>
-            </div >
+                    <div className="bt_wrap">
+                        <button className="on" onClick={() => resTrainerUpdate()}> 수정</button>
+                        <Link to={"/trainerView"}>취소</Link>
+                    </div>
+                </div>
+            </div>
         )
     })
 

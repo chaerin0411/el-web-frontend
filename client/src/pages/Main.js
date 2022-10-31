@@ -43,7 +43,7 @@ const Main = () => {
     const dietList = data.dietList.map((data, index) => (
         <div key={index} className="items">
             <a href="#"></a>
-            <div className="item">
+            <div className="item" onClick={() => youtubeLoad(data)}>
                 <p className="title">{data.title}</p>
                 <p className="comment">{data.comment}</p>
             </div>

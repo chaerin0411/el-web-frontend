@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Form, Container } from "react-bootstrap";
+import { Modal, Container } from "react-bootstrap";
 
 
 const ScheduleModal = (props) => {
@@ -29,7 +29,7 @@ const ScheduleModal = (props) => {
                     <h5>{info.end}</h5>
                 </Modal.Body>
             </Container>
-        </Modal >
+        </Modal>
     );
 };
 

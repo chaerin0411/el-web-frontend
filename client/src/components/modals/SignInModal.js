@@ -5,6 +5,7 @@ import { Modal, Button, Form, Container } from "react-bootstrap";
 // import { GoogleLogin } from "react-google-login";
 import HorizontalLine from "../HorizonLine";
 
+
 const SignInModal = ({ show, onHide }) => {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();

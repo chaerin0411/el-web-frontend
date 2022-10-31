@@ -5,6 +5,7 @@ import { Modal, Button, Form, Container } from "react-bootstrap";
 // import { GoogleLogin } from "react-google-login";
 import HorizontalLine from "../HorizonLine";
 
+
 const SignUpModal = ({ show, onHide }) => {
 
     const {

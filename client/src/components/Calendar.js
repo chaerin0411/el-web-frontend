@@ -7,6 +7,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import '../css/calendar.css';
 
+
 const Calendar = (props) => {
 
     const [schedules, setSchedules] = useState([]);

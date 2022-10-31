@@ -16,6 +16,7 @@ const TrainerWrite = () => {
         file: '',
         award: '',
         career: '',
+        addr: '',
     })
 
     const inputChange = (e) => {
@@ -30,8 +31,8 @@ const TrainerWrite = () => {
     const id = sessionStorage.getItem('id');
 
     const resTrainerWrite = async () => {
-        const loadTrainerrWrite = await axios.put(`/api/trainerUpdate/${id}`, writeInfo);
-        console.log(loadTrainerrWrite.data);
+        const loadTrainerWrite = await axios.put(`/api/trainerUpdate/${id}`, writeInfo);
+        console.log(loadTrainerWrite.data);
         document.location.href = `/trainerView/${id}`;
     }
 
@@ -83,6 +84,10 @@ const TrainerWrite = () => {
                         <dl>
                             <dt>이력</dt>
                             <dd><textarea name="career" placeholder="이력 입력" className="cont" onChange={inputChange} /></dd>
+                        </dl>
+                        <dl>
+                            <dt>헬스장위치</dt>
+                            <dd><input type="text" name="addr" placeholder="헬스장위치 입력" className="mb-3" onChange={inputChange} /></dd>
                         </dl>
                     </div>
                 </div>

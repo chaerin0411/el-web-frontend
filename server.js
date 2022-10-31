@@ -225,6 +225,15 @@ app.post('/api/member/:id&/:password&/:name&/:email&/:phone&/:addr', (req, res, 
     })
 })
 
+app.use('/image', express.static('./upload'));
+
+app.post('/api/trainer/image', upload.single('file'), (req, res, next) => {
+    if (err) {
+        return req.json({ success: false, err });
+    }
+    return res.json({ success: true, filePath: res.req.file.path, fileName: res.req.file.filename });
+})
+
 app.put('/api/feedback/workoutUpdate', (req, res, next) => {
     const seq = req.requestData.seq;
     const feedback = req.requestData.feedback;
@@ -268,8 +277,6 @@ app.put('/api/memberUpdate', (req, res, next) => {
     })
 })
 
-app.use('/image', express.static('./upload'));
-
 app.put('/api/trainerUpdate/:id', (req, res, next) => {
     console.log(req.requestData);
     const id = req.params.id;
@@ -281,8 +288,9 @@ app.put('/api/trainerUpdate/:id', (req, res, next) => {
     const weight = req.requestData.weight;
     const award = req.requestData.award;
     const career = req.requestData.career;
+    const addr = req.requestData.addr;
     const image = '';
-    const sql = `update trainer set name='${name}', age='${age}', sex='${sex}', birth='${birth}', height='${height}', weight='${weight}', award='${award}', career='${career}', image='${image}' where id='${id}'`;
+    const sql = `update trainer set name='${name}', age='${age}', sex='${sex}', birth='${birth}', height='${height}', weight='${weight}', award='${award}', career='${career}', addr='${addr}', image='${image}' where id='${id}'`;
     connection.query(sql, async (err, result) => {
         if (err) throw err;
         console.log("1 record updated");

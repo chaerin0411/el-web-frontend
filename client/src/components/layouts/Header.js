@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, Button, Container, Dropdown } from "react-bootstrap";
 import SignUpModal from "../modals/SignUpModal";
 import SignInModal from "../modals/SignInModal";
@@ -23,6 +23,12 @@ const Header = () => {
             document.location.href = '/';
         }
     }
+
+    useEffect(() => {
+        if (id === null) {
+            setSignInModalOn(true)
+        }
+    }, [])
 
     return (
         <>
