@@ -34,6 +34,15 @@ h3 {
   padding: 0 10px;
 }
 
+.link {
+  text-decoration: none;
+  color: #000;
+}
+
+.link small {
+  color: #a0b2d5;
+}
+
 .category1 {
   text-align: center;
   height: 400px;
@@ -215,6 +224,12 @@ h3 {
   border: 0;
   text-align: center;
   margin: 0 0 0 35px;
+}
+
+.bt_member img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 }
 
 .board_list_wrap {

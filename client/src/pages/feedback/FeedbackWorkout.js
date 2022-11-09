@@ -7,7 +7,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 const FeedbackWorkout = () => {
     const [feedbackWorkout, setFeedbackWorkout] = useState({
-        date: '',
+        date: '2022-11-08',
         feedback: '',
     })
 
@@ -32,9 +32,8 @@ const FeedbackWorkout = () => {
 
     const [loadWorkoutList, setLoadWorkoutList] = useState([]);
 
-    const date = '2022-10-22';
     const resWorkoutList = async () => {
-        const loadWorkoutList = await axios.get(`/api/feedback/workoutList/${id}&/${date}`);
+        const loadWorkoutList = await axios.get(`/api/feedback/workoutList/${id}&/${feedbackWorkout.date}`);
         console.log(loadWorkoutList.data);
         setLoadWorkoutList(loadWorkoutList.data);
     }

@@ -12,6 +12,9 @@
 # calendar
 /config/calendar.txt
 
+# redux/features
+/redux/features
+
 # dependencies
 /node_modules
 /.pnp

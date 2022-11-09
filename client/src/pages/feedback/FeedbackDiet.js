@@ -7,7 +7,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 const FeedbackDiet = () => {
     const [feedbackDiet, setFeedbackDiet] = useState({
-        date: '',
+        date: '2022-11-08',
         feedback: '',
     })
 
@@ -32,9 +32,8 @@ const FeedbackDiet = () => {
 
     const [loadDietList, setLoadDietList] = useState([]);
 
-    const date = '2022-10-22';
     const resDietList = async () => {
-        const loadDietList = await axios.get(`/api/feedback/dietList/${id}&/${date}`);
+        const loadDietList = await axios.get(`/api/feedback/dietList/${id}&/${feedbackDiet.date}`);
         console.log(loadDietList.data);
         setLoadDietList(loadDietList.data);
     }

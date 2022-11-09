@@ -117,7 +117,7 @@ app.get('/api/login/:id&/:password', (req, res, next) => {
     const id = req.params.id;
     const password = req.params.password;
     console.log(id, password);
-    const sql = `select id,password from trainer where id='${id}' and password='${password}'`;
+    const sql = `select * from trainer where id='${id}' and password='${password}'`;
     connection.query(sql, (err, data) => {
         console.log(sql);
         res.send(data);

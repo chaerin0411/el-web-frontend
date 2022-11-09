@@ -20,13 +20,12 @@ const SignInModal = ({ show, onHide }) => {
                     if (res.data.length == 0) {
                         alert("로그인 정보가 일치하지 않습니다.")
                     } else if (res.data.length > 0) {
-                        alert("로그인에 성공하였습니다.")
-                        alert(`환영합니다 ${data.id}님`)
-                        sessionStorage.setItem('id', data.id)
+                        alert(`환영합니다 ${data.id}님`);
+                        sessionStorage.setItem('id', data.id);
+                        sessionStorage.setItem('name', res.data[0].name)
+                        sessionStorage.setItem('image', res.data[0].image)
                         document.location.href = '/';
                     }
-                    // console.log(id)
-                    // console.log(password)
                     console.log(data.id);
                     console.log(data.password);
                 }

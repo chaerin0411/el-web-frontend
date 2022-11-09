@@ -39,7 +39,7 @@ const TrainerWrite = () => {
     return (
         <div className="board_wrap">
             <div className="board_title">
-                <strong>{id}님</strong>
+                <strong>{sessionStorage.getItem('name')}님</strong>
                 <p>내 정보를 모두 입력해주세요.</p>
             </div>
 
